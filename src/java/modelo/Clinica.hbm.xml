@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2013 11:58:06 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.Clinica" table="clinica" schema="public">
+        <id name="clinicaId" type="int">
+            <column name="clinica_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="clinicaNome" type="string">
+            <column name="clinica_nome" length="300" not-null="true" />
+        </property>
+        <property name="clinicaEndereco" type="string">
+            <column name="clinica_endereco" length="300" />
+        </property>
+        <property name="clinicaTelefone" type="string">
+            <column name="clinica_telefone" length="100" />
+        </property>
+        <property name="clinicaCidade" type="string">
+            <column name="clinica_cidade" length="300" />
+        </property>
+        <property name="clinicaEstado" type="string">
+            <column name="clinica_estado" length="300" />
+        </property>
+        <property name="clinicaEmail" type="string">
+            <column name="clinica_email" length="300" />
+        </property>
+        <property name="clinicaLogin" type="string">
+            <column name="clinica_login" length="300" />
+        </property>
+        <property name="clinicaSenha" type="string">
+            <column name="clinica_senha" length="300" />
+        </property>
+        <set name="planos" inverse="false" table="clinica_plano">
+            <key>
+                <column name="clinica_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="modelo.Plano">
+                <column name="plano_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="medicos" inverse="true" table="clinica_medico">
+            <key>
+                <column name="clinica_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="modelo.Medico">
+                <column name="medico_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

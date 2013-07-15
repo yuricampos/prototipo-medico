@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2013 11:58:06 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.Paciente" table="paciente" schema="public">
+        <id name="pacienteId" type="int">
+            <column name="paciente_id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="plano" class="modelo.Plano" fetch="select">
+            <column name="plano_id" />
+        </many-to-one>
+        <property name="pacienteNome" type="string">
+            <column name="paciente_nome" length="300" not-null="true" />
+        </property>
+        <property name="pacienteLogin" type="string">
+            <column name="paciente_login" length="300" not-null="true" />
+        </property>
+        <property name="pacienteSenha" type="string">
+            <column name="paciente_senha" length="300" not-null="true" />
+        </property>
+        <property name="pacienteEmail" type="string">
+            <column name="paciente_email" length="300" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

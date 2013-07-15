@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 15/07/2013 11:58:06 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="modelo.Plano" table="plano" schema="public">
+        <id name="planoId" type="int">
+            <column name="plano_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="planoNome" type="string">
+            <column name="plano_nome" length="300" not-null="true" />
+        </property>
+        <property name="planoLogin" type="string">
+            <column name="plano_login" length="300" />
+        </property>
+        <property name="planoEmail" type="string">
+            <column name="plano_email" length="300" />
+        </property>
+        <property name="planoSenha" type="string">
+            <column name="plano_senha" length="300" />
+        </property>
+        <set name="medicos" inverse="true" table="medico_plano">
+            <key>
+                <column name="plano_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="modelo.Medico">
+                <column name="medico_id" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="pacientes" inverse="true">
+            <key>
+                <column name="plano_id" />
+            </key>
+            <one-to-many class="modelo.Paciente" />
+        </set>
+        <set name="clinicas" inverse="true" table="clinica_plano">
+            <key>
+                <column name="plano_id" not-null="true" />
+            </key>
+            <many-to-many entity-name="modelo.Clinica">
+                <column name="clinica_id" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
